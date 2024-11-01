@@ -1,0 +1,26 @@
+name: Show System Info with Neofetch
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+  workflow_dispatch:  # 添加这一行，使工作流支持手动触发
+
+jobs:
+  show-neofetch:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check out the repository
+        uses: actions/checkout@v2
+
+      - name: Set up the environment and install Neofetch
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y neofetch
+
+      - name: Run Neofetch and display system info
+        run: neofetch
